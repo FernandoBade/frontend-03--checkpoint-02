@@ -1,4 +1,6 @@
 import { useContext, useEffect, useState } from "react";
+import { ContextGlobal } from "./GlobalVariables";
+import { getTokenFromStorage } from "./Storage";
 import styles from "./ScheduleForm.module.css";
 
 const ScheduleForm = () => {

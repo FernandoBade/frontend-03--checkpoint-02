@@ -1,10 +1,10 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
-import { ContextoGlobal } from "./GlobalVariables";
+import { Context } from "./GlobalVariables";
 import styles from "./Card.module.css";
 
 const Card = ({ nome, matricula, usuario }) => {
-  const { theme } = useContext(ContextoGlobal);
+  const { theme } = useContext(Context);
   const isDarkMode = theme === "dark" || false;
 // Na linha seguinte deverá ser feito um teste se a aplicação
 // está em dark mode e deverá utilizar o css correto

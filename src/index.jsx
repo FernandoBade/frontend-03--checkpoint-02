@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { ContextProvider } from "./Components/GlobalVariables";
+import { Context } from "./Components/GlobalVariables";
 import App from "./App";
 import Home from "./Routes/Home";
 import Login from "./Routes/Login";
@@ -14,7 +14,7 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <ContextProvider>
+      <Context>
         <Routes>
           <Route path="/" element={<App />}>
             <Route index path="/home" element={<Home />} />
@@ -22,7 +22,7 @@ root.render(
             <Route path="/dentist/:id" element={<Detail />} />
           </Route>
         </Routes>
-      </ContextProvider>
+      </Context>
     </BrowserRouter>
   </React.StrictMode>
 );
