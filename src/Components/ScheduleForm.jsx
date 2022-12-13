@@ -1,82 +1,128 @@
 import { useContext, useEffect, useState } from "react";
-import { ContextGlobal } from "./GlobalVariables";
-import { getTokenFromStorage } from "./Storage";
+import { ContextGlobal } from "./service/context";
+import { getTokenFromStorage } from "./service/storage";
 import styles from "./ScheduleForm.module.css";
 
 const ScheduleForm = () => {
+  const [dentistList, setDentistList] = useState([]);
+  const [patienceList, setPatienceList] = useState([]);
+
+  const { theme } = useContext(ContextGlobal);
+  const isDarkMode = theme === "dark" || false;
+
   useEffect(() => {
-    //Nesse useEffect, você vai fazer um fetch na api buscando TODOS os dentistas
-    //e pacientes e carregar os dados em 2 estados diferentes
+    async function fetchData() {
+      try {
+        const [dentist, patience] = await Promise.all([
+          fetch(`https://dhodonto.ctdprojetos.com.br/dentista`),
+          fetch(`https://dhodonto.ctdprojetos.com.br/paciente`),
+        ]);
+        const dentistList = await dentist.json();
+        const patienceList = await patience.json();
+        setDentistList(dentistList);
+        setPatienceList(patienceList.body);
+      } catch (error) {
+        console.log(error.message);
+      }
+    }
+    fetchData();
   }, []);
 
   const handleSubmit = (event) => {
-    //Nesse handlesubmit você deverá usar o preventDefault,
-    //obter os dados do formulário e enviá-los no corpo da requisição 
-    //para a rota da api que marca a consulta
-    //lembre-se que essa rota precisa de um Bearer Token para funcionar.
-    //Lembre-se de usar um alerta para dizer se foi bem sucedido ou ocorreu um erro
+    event.preventDefault();
+
+    const formData = new FormData(event.target);
+    const data = Object.fromEntries(formData);
+    const token = getTokenFromStorage();
+    //TODO Do the Scheduling in API
+    try {
+      fetch(`https://dhodonto.ctdprojetos.com.br/consulta`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          dentista: {
+            matricula: data.dentist,
+          },
+          paciente: {
+            matricula: data.patient,
+          },
+          dataHoraAgendamento: data.appointmentDate,
+        }),
+      }).then((res) => {
+        if(res.ok) {
+          alert("Consulta agendada com sucesso");
+          window.location.href = '/';
+        }
+        else{
+          alert("Ocorreu um erro");
+        }
+      });
+    } catch (error) {
+      console.log(error.message);
+    }
   };
 
   return (
-    <>
-      {/* //Na linha seguinte deverá ser feito um teste se a aplicação
-        // está em dark mode e deverá utilizar o css correto */}
-      <div
-        className={`text-center container}`
-        }
-      >
-        <form onSubmit={handleSubmit}>
-          <div className={`row ${styles.rowSpacing}`}>
-            <div className="col-sm-12 col-lg-6">
-              <label htmlFor="dentist" className="form-label">
-                Dentist
-              </label>
-              <select className="form-select" name="dentist" id="dentist">
-                {/*Aqui deve ser feito um map para listar todos os dentistas*/}
-                <option key={'Matricula do dentista'} value={'Matricula do dentista'}>
-                  {`Nome Sobrenome`}
-                </option>
-              </select>
-            </div>
-            <div className="col-sm-12 col-lg-6">
-              <label htmlFor="patient" className="form-label">
-                Patient
-              </label>
-              <select className="form-select" name="patient" id="patient">
-                {/*Aqui deve ser feito um map para listar todos os pacientes*/}
-                <option key={'Matricula do paciente'} value={'Matricula do paciente'}>
-                  {`Nome Sobrenome`}
-                </option>
-              </select>
-            </div>
+    <div
+      className={`text-center container ${isDarkMode ? styles.cardDark : ""}`}
+    >
+      <form onSubmit={handleSubmit}>
+        <div className={`row ${styles.rowSpacing}`}>
+          <div className="col-sm-12 col-lg-6">
+            <label htmlFor="dentist" className="form-label">
+              Dentist
+            </label>
+            <select className="form-select" name="dentist" id="dentist">
+              {dentistList.length > 0 &&
+                dentistList.map((dentist) => (
+                  <option key={dentist.matricula} value={dentist.matricula}>
+                    {`${dentist.nome} ${dentist.sobrenome}`}
+                  </option>
+                ))}
+            </select>
           </div>
-          <div className={`row ${styles.rowSpacing}`}>
-            <div className="col-12">
-              <label htmlFor="appointmentDate" className="form-label">
-                Date
-              </label>
-              <input
-                className="form-control"
-                id="appointmentDate"
-                name="appointmentDate"
-                type="datetime-local"
-              />
-            </div>
+          <div className="col-sm-12 col-lg-6">
+            <label htmlFor="patient" className="form-label">
+              Patient
+            </label>
+            <select className="form-select" name="patient" id="patient">
+              {patienceList.length > 0 &&
+                patienceList.map((patience) => (
+                  <option key={patience.matricula} value={patience.matricula}>
+                    {`${patience.nome} ${patience.sobrenome}`}
+                  </option>
+                ))}
+            </select>
           </div>
-          <div className={`row ${styles.rowSpacing}`}>
-            {/* //Na linha seguinte deverá ser feito um teste se a aplicação
-        // está em dark mode e deverá utilizar o css correto */}
-            <button
-              className={`btn btn-light ${styles.button
-                }`}
-              type="submit"
-            >
-              Schedule
-            </button>
+        </div>
+        <div className={`row ${styles.rowSpacing}`}>
+          <div className="col-12">
+            <label htmlFor="appointmentDate" className="form-label">
+              Date
+            </label>
+            <input
+              className="form-control"
+              id="appointmentDate"
+              name="appointmentDate"
+              type="datetime-local"
+            />
           </div>
-        </form>
-      </div>
-    </>
+        </div>
+        <div className={`row ${styles.rowSpacing}`}>
+          <button
+            className={`btn btn-${isDarkMode ? "dark" : "light"} ${
+              styles.button
+            }`}
+            type="submit"
+          >
+            Schedule
+          </button>
+        </div>
+      </form>
+    </div>
   );
 };
 

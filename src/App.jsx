@@ -1,14 +1,14 @@
 
 import { useEffect, useContext } from 'react';
 import { Outlet, useNavigate, useLocation } from "react-router-dom";
-import { Context } from './Components/GlobalVariables';
 import Footer from "./Components/Footer";
 import Navbar from "./Components/Navbar";
+import { ContextGlobal } from './Components/service/context';
 
 function App() {
   const location = useLocation();
   const navigate = useNavigate();
-  const { theme } = useContext(Context)
+  const { theme } = useContext(ContextGlobal)
   const isDarkMode = theme === "dark" || false
 
   useEffect(() => {

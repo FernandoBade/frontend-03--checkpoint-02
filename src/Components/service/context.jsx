@@ -1,7 +1,7 @@
 import { createContext, useMemo, useReducer } from "react";
-import { actions, initialState, reducer } from "./Reducer";
+import { actions, initialState, reducer } from "./reducer";
 
-export const Context = createContext(undefined);
+export const ContextGlobal = createContext(undefined);
 
 export const ContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -27,8 +27,8 @@ export const ContextProvider = ({ children }) => {
   );
 
   return (
-    <Context.Provider value={providerState}>
+    <ContextGlobal.Provider value={providerState}>
       {children}
-    </Context.Provider>
+    </ContextGlobal.Provider>
   );
 };

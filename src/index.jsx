@@ -1,20 +1,20 @@
 import React from "react";
-import ReactDOM from "react-dom/client";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { Context } from "./Components/GlobalVariables";
+import ReactDOM from "react-dom/client";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap.min.js";
 import App from "./App";
 import Home from "./Routes/Home";
 import Login from "./Routes/Login";
 import Detail from "./Routes/Detail";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "bootstrap/dist/js/bootstrap.min.js";
+import { ContextProvider } from "./Components/service/context";
 import "./index.css";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <Context>
+      <ContextProvider>
         <Routes>
           <Route path="/" element={<App />}>
             <Route index path="/home" element={<Home />} />
@@ -22,7 +22,7 @@ root.render(
             <Route path="/dentist/:id" element={<Detail />} />
           </Route>
         </Routes>
-      </Context>
+      </ContextProvider>
     </BrowserRouter>
   </React.StrictMode>
 );
