@@ -1,4 +1,8 @@
 import styles from "./Navbar.module.css";
+import { useContext } from "react";
+import { Link } from "react-router-dom";
+import { ContextoGlobal } from "./GlobalVariables";
+
 
 const Navbar = () => {
 
