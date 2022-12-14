@@ -16,9 +16,9 @@ const Card = ({ nome, matricula, usuario }) => {
       />
       <div className={`card-body ${styles.CardBody}`}>
         <Link to={`/dentist/${matricula}`}>
-          <h5 className={`card-title ${styles.title}`}>{nome}</h5>
+          <h5 className={`card-title mb-0 name-color ${styles.title}`}>{nome}</h5>
+          <p className="card-text mt-0">{usuario?.username}</p>
         </Link>
-        <p className="card-text">{usuario?.username}</p>
       </div>
     </div>
   );

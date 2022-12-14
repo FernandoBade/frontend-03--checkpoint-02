@@ -60,6 +60,10 @@ form{
   margin: 0 auto;
 }
 
+.car:hover {
+  transform: scale(1.05);
+}
+
 table {
  border-collapse: collapse;
     border-spacing: 0;
@@ -77,6 +81,14 @@ td, th {
 
 tr:nth-child(even) {
   background-color: #dddddd;
+}
+
+.name-color{
+  color: #5f9eb9 !important
+}
+
+.name-color:hover{
+  color: #aacede !important
 }
 
 .dark{

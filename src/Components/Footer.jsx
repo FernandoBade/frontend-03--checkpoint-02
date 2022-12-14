@@ -27,6 +27,7 @@ const Footer = () => {
               </div>
             </div>
           </div>
+          <h6 className='text-center'>Checkpoint final de FrontEnd 03 - Fernando Ramos Bade</h6>
         </div>
       </div>
 
