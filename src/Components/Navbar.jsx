@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { ContextGlobal } from "./service/context";
 import { removeTokenFromStorage } from "./service/storage";
-import styles from "./Navbar.module.css";
+import styles from "../Components/style/Navbar.module.css";
 
 const Navbar = () => {
   const { theme, setDarkTheme, setLightTheme, login, setLogout } =

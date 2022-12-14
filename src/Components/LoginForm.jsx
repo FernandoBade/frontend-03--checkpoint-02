@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { ContextGlobal } from "./service/context";
 import { setTokenInStorage } from "./service/storage";
-import styles from "./Form.module.css";
+import styles from "../Components/style/Form.module.css";
 
 const LoginForm = () => {
   const { theme, setLogin } = useContext(ContextGlobal);

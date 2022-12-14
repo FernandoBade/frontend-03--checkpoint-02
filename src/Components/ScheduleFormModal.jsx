@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { ContextGlobal } from './service/context';
 import ScheduleForm from './ScheduleForm';
-import styles from './ScheduleFormModal.module.css';
+import styles from '../Components/style/ScheduleFormModal.module.css';
 
 const ScheduleFormModal = () => {
   const { theme } = useContext(ContextGlobal)

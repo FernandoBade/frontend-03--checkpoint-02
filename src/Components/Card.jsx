@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { ContextGlobal } from "./service/context";
-import styles from "./Card.module.css";
+import styles from "../Components/style/Card.module.css";
 
 const Card = ({ nome, matricula, usuario }) => {
   const { theme } = useContext(ContextGlobal);

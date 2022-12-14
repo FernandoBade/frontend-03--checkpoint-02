@@ -2,7 +2,7 @@ import { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router-dom";
 import ScheduleFormModal from "./ScheduleFormModal";
 import { ContextGlobal } from "./service/context";
-import styles from "./DetailCard.module.css";
+import styles from "../Components/style/DetailCard.module.css";
 
 const DetailCard = () => {
   const { id } = useParams();

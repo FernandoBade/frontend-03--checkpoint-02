@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { ContextGlobal } from "./service/context";
 import { getTokenFromStorage } from "./service/storage";
-import styles from "./ScheduleForm.module.css";
+import styles from "../Components/style/ScheduleForm.module.css";
 
 const ScheduleForm = () => {
   const [dentistList, setDentistList] = useState([]);

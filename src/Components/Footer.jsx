@@ -1,6 +1,6 @@
 import { useContext } from 'react'
 import { ContextGlobal } from './service/context';
-import styles from "./Footer.module.css";
+import styles from "../Components/style/Footer.module.css";
 
 const Footer = () => {
   const { theme } = useContext(ContextGlobal)
