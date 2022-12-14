@@ -34,7 +34,7 @@ const ScheduleForm = () => {
     const formData = new FormData(event.target);
     const data = Object.fromEntries(formData);
     const token = getTokenFromStorage();
-    //TODO Do the Scheduling in API
+    
     try {
       fetch(`https://dhodonto.ctdprojetos.com.br/consulta`, {
         method: "POST",
@@ -57,7 +57,7 @@ const ScheduleForm = () => {
           window.location.href = '/';
         }
         else{
-          alert("Ocorreu um erro");
+          alert("Erro ao tentar agendar a consulta. Tente novamente");
         }
       });
     } catch (error) {
