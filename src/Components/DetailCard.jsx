@@ -24,7 +24,7 @@ const DetailCard = () => {
     <>
       {dentist ? (
         <>
-          <h1>Detalhes de {dentist?.nome} </h1>
+          <h1>Mostrando detalhes de {dentist?.nome + " " + dentist?.sobrenome } </h1>
           <section className="card col-sm-12 col-lg-6 container">
             <div
               className={`card-body row ${isDarkMode ? styles.cardDark : ""}`}
@@ -38,12 +38,13 @@ const DetailCard = () => {
               </div>
               <div className="col-sm-12 col-lg-6">
                 <ul className="list-group">
-                  <li className="list-group-item">Name: {dentist.nome}</li>
                   <li className="list-group-item">
-                    Surname: {dentist.sobrenome}
+                    Nome: {dentist.nome}</li>
+                  <li className="list-group-item">
+                    Sobrenome: {dentist.sobrenome}
                   </li>
                   <li className="list-group-item">
-                    Username: {dentist.usuario.username}
+                    Usuário: {dentist.usuario.username}
                   </li>
                 </ul>
                 <div className="text-center">
@@ -54,7 +55,7 @@ const DetailCard = () => {
                       styles.button
                     }`}
                   >
-                    Schedule a Consult
+                    Agendar Consulta
                   </button>
                 </div>
               </div>

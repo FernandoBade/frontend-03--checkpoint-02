@@ -57,7 +57,7 @@ const ScheduleForm = () => {
           window.location.href = '/';
         }
         else{
-          alert("Erro ao tentar agendar a consulta. Tente novamente");
+          alert("Erro ao tentar agendar a consulta. Confira os campos e verifique a data");
         }
       });
     } catch (error) {
@@ -73,7 +73,7 @@ const ScheduleForm = () => {
         <div className={`row ${styles.rowSpacing}`}>
           <div className="col-sm-12 col-lg-6">
             <label htmlFor="dentist" className="form-label">
-              Dentist
+              Dentista
             </label>
             <select className="form-select" name="dentist" id="dentist">
               {dentistList.length > 0 &&
@@ -86,7 +86,7 @@ const ScheduleForm = () => {
           </div>
           <div className="col-sm-12 col-lg-6">
             <label htmlFor="patient" className="form-label">
-              Patient
+              Paciente
             </label>
             <select className="form-select" name="patient" id="patient">
               {patienceList.length > 0 &&
@@ -101,7 +101,7 @@ const ScheduleForm = () => {
         <div className={`row ${styles.rowSpacing}`}>
           <div className="col-12">
             <label htmlFor="appointmentDate" className="form-label">
-              Date
+              Data e Hora
             </label>
             <input
               className="form-control"
@@ -118,7 +118,7 @@ const ScheduleForm = () => {
             }`}
             type="submit"
           >
-            Schedule
+            Agendar
           </button>
         </div>
       </form>
