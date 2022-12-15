@@ -57,7 +57,7 @@ const ScheduleForm = () => {
           window.location.href = '/';
         }
         else{
-          alert("Erro ao tentar agendar a consulta. Verifique:\n - Relizou login no sistema? \n- Preencheu todos os campos?\n - A data é futura?");
+          alert("Erro ao tentar agendar a consulta. Verifique:\n - Relizou login no sistema? \n - Preencheu todos os campos?\n - A data é futura?");
         }
       });
     } catch (error) {
