@@ -13,7 +13,7 @@ describe("Tests setup for main usages", () => {
 
   test('verify server status 500', function () {
     server.use(
-      rest.get('/greeting', (req, res, ctx) => {
+      rest.get(<Home/>, (res, ctx) => {
         return res(ctx.status(500));
       })
     );
@@ -28,10 +28,18 @@ describe("Tests setup for main usages", () => {
     expect(theme).toHaveClass("dark");
   });
 
-  test('verify the apointment button on Guilherme Lima details page', () => {
-    render(<Login />)
-    expect(screen.getByText('Login')).toBeInTheDocument();
+  test('verify the apointment button on Guilherme Lima is not disabled', () => {
+    render(<Fetch url="/dentist/b36ac23a-75d1-4286-9135-494c7402a6f0" />)
+    expect(screen.getByText('Agendar Consulta')).toBeInTheDocument();
   });
+
+  test('verify the /dentist/ endpoint to be empty', () => {
+    render(<Fetch url="/dentist/" />)
+    expect(screen.getByText('Checkpoint')).not.toBeInTheDocument();
+  });
+
 })
+
+
 
 
