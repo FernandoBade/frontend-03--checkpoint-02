@@ -57,7 +57,7 @@ const ScheduleForm = () => {
           window.location.href = '/';
         }
         else{
-          alert("Erro ao tentar agendar a consulta. Confira os campos e verifique a data");
+          alert("Erro ao tentar agendar a consulta. Verifique\n Está logado ao sistema; os campos e verifique a data");
         }
       });
     } catch (error) {
