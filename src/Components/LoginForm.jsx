@@ -58,7 +58,7 @@ const LoginForm = () => {
             required
           />
           <button className="btn btn-primary" type="submit">
-            Send
+            Acessar sistema
           </button>
         </form>
       </div>
