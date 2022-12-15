@@ -22,9 +22,8 @@ const Navbar = () => {
   return (
     <header className="sticky-top">
       <nav
-        className={`navbar navbar-expand-sm ${
-          isDarkMode ? "navbar-dark bg-dark" : "navbar-light bg-light"
-        }`}
+        className={`navbar navbar-expand-sm ${isDarkMode ? "navbar-dark bg-dark" : "navbar-light bg-light"
+          }`}
         aria-label="Third navbar example"
       >
         <div className="container">
@@ -69,9 +68,8 @@ const Navbar = () => {
               </li>
               <li className={`nav-item`}>
                 <button
-                  className={`btn btn-${isDarkMode ? "light" : "dark"} ${
-                    styles.btnStyle
-                  }`}
+                  className={`btn btn-${isDarkMode ? "light" : "dark"} ${styles.btnStyle
+                    }`}
                   onClick={changeTheme}
                 >
                   {isDarkMode ? "☀" : "🌙"}{" "}

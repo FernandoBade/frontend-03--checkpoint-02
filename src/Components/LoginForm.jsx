@@ -28,9 +28,11 @@ const LoginForm = () => {
           setTokenInStorage(data.token);
           setLogin();
           navigate("/home");
-        });
-    } catch (error) {
-      console.log(error.message);
+          alert("Usuário logado com sucesso. Redirecionando...")
+        })
+    } catch (e) {
+      console.log(e.message);
+      alert("Erro ao tentar conectar. /n Erro:" + e.message)
     }
   };
 
